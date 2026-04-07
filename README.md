@@ -6,7 +6,7 @@
 
 「産業政策評価ツール」の使用には、Rの実行環境が必要です。あらかじめご準備ください。
 
-「Industrial-Policy-Analysis-Tool.zip」ファイルをダウンロードして、作業環境下で解凍してください。分析用コード、データ格納フォルダ、出力フォルダ、が格納されています。本分析ツールは、３つのRコード（01_prepare.R、02_analysis.R、03_robustness）から構成されています。番号順に使用してください。
+「Industrial-Policy-Analysis-Tool.zip」フォルダをダウンロードして、作業環境下で解凍してください。分析用コード、データ格納フォルダ、出力フォルダ、が格納されています。本分析ツールは、３つのRコード（01_prepare.R、02_analysis.R、03_robustness）から構成されています。番号順に使用してください。
 
 <p align="center">
 <img width="400" height="560" alt="image" src="https://github.com/user-attachments/assets/cf2fbc55-9bf8-4572-a2f2-19895372e831" />
@@ -47,9 +47,9 @@ dataフォルダには、地図データと産業名リストが格納されて�
 # ツールの実行
 
 ## ①準備
-### [01_prepare.R](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/01_prepare.R)
+### 01_prepare.R　<!--(https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/01_prepare.R)-->
 
-企業活動基本調査の調査票情報（csv形式）を分析に適した形に整形します。設定セクションでワーキングディレクトリを設定してください。
+企業活動基本調査の調査票情報（csv形式）を分析に適した形に整形するRスクリプトファイルです。設定セクションでワーキングディレクトリを設定してください。
 
 コードを実行すると、「01_prepare_output」フォルダ内にmerged_key.csv等のファイルが出力されます。正しく出力されているか確認して、次のステップに進んでください。
 
@@ -58,9 +58,9 @@ dataフォルダには、地図データと産業名リストが格納されて�
 </p>
 
 ## ②メイン分析
-### [02_analysis.R](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/02_analysis.R)
+### 02_analysis.R <!--](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/02_analysis.R)-->
 
-対象となる産業政策に関して差の差分析を行うことができます（本分析）。
+対象となる産業政策に関して差の差分析を行うRスクリプトファイルです（本分析）。
 
 02_analysis.Rを使って、メイン分析を実施します。ワーキングディレクトリを設定してください。また、分析対象の政策名を記入してください（出力ファイル名等に反映されます）。その際、「merged_key.csv」、「企業リスト.xlsx」、「industry_name.csv」を参照するため、参照先に格納されていることを確認してください。
 
@@ -90,9 +90,9 @@ pdfとpngで図を、xlsxで数値を確認することができます。同じ�
 </p>
 
 ## ③補足的分析
-### [03_robustness.R](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/03_robustness.R)
+### 03_robustness.R <!--](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/03_robustness.R)-->
 
-分析結果の頑健性を確認する分析を行うことができます（Appendixの分析）。ワーキングディレクトリを設定してください。また、分析対象の政策名を記入してください（出力ファイル名等に反映されます）。その際、「merged_key.csv」、「企業リスト.xlsx」、「industry_name.csv」を参照するため、参照先に格納されていることを確認してください。
+分析結果の頑健性を確認する分析を行うRスクリプトファイルです（Appendixの分析）。ワーキングディレクトリを設定してください。また、分析対象の政策名を記入してください（出力ファイル名等に反映されます）。その際、「merged_key.csv」、「企業リスト.xlsx」、「industry_name.csv」を参照するため、参照先に格納されていることを確認してください。
 
 コードを実行すると、 「03_robustness_output」フォルダ内に分析結果が格納されます。正しく出力されているか確認してください。
 
