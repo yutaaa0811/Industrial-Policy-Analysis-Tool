@@ -22,7 +22,7 @@
 
 kikatsu_rawdataのフォルダには、経済産業省企業活動基本調査の調査票情報（個票データ）を格納してください。
 
-「公的統計の二次的利用サービス」に関する[独立行政法人統計センター](https://www.nstac.go.jp/)のページを熟読の上、ご自身で申請して××の調査票情報を用意してください。
+「公的統計の二次的利用サービス」に関する[独立行政法人統計センター](https://www.nstac.go.jp/)のページを熟読の上、ご自身で申請して経済産業省企業活動基本調査の調査票情報を用意してください。
 
 <p align="center">
 <img width="400" height="335" alt="image" src="https://github.com/user-attachments/assets/165c7e04-0c26-4d9c-87e3-ecd721a1b3ce" />
@@ -60,7 +60,7 @@ dataフォルダには、地図データと産業名リストが格納されて�
 ## ②メイン分析
 ### [02_analysis.R](https://github.com/yutaaa0811/Industrial-Policy-Analysis-Tool/blob/main/02_analysis.R)
 
-対象となる産業政策に関して差の差分析を行うことができます（本文の分析）。
+対象となる産業政策に関して差の差分析を行うことができます（本分析）。
 
 02_analysis.Rを使って、メイン分析を実施します。ワーキングディレクトリを設定してください。また、分析対象の政策名を記入してください（出力ファイル名等に反映されます）。その際、「merged_key.csv」、「企業リスト.xlsx」、「industry_name.csv」を参照するため、参照先に格納されていることを確認してください。
 
@@ -74,19 +74,19 @@ dataフォルダには、地図データと産業名リストが格納されて�
 
 00から始まるファイルは記述統計量をまとめたものです。industyは産業別企業数の分布、map_ratioは都道府県別企業割合の分布、descriptiveは各変数ごとの記述統計量、等です。　
 <p align="center">
-<img width="390" height="100" alt="image" src="https://github.com/user-attachments/assets/b2f4d6d9-f64c-493e-97b3-5b7478ddc800" />
+<img width="400" height="100" alt="image" src="https://github.com/user-attachments/assets/b2f4d6d9-f64c-493e-97b3-5b7478ddc800" />
 </p>
 
 01~07のファイルは、メインの分析結果です。
 
 <p align="center">
-<img width="427" height="348" alt="image" src="https://github.com/user-attachments/assets/4e7e96e3-8376-4aa1-9fcc-0812faea8761" />
+<img width="400" height="348" alt="image" src="https://github.com/user-attachments/assets/4e7e96e3-8376-4aa1-9fcc-0812faea8761" />
 </p>
 
-pdfとpngで図を、xlsxで数値を確認することができます。いずれも同じ分析結果をまとめたものです。
+pdfとpngで図を、xlsxで数値を確認することができます。同じタイトルのファイルは、同じ分析結果を異なるファイル形式で保存したものです。
 
 <p align="center">
-<img width="461" height="206" alt="image" src="https://github.com/user-attachments/assets/d0f8f85b-ef8e-410d-ac29-cd4ee3bff2a3" />
+<img width="400" height="206" alt="image" src="https://github.com/user-attachments/assets/d0f8f85b-ef8e-410d-ac29-cd4ee3bff2a3" />
 </p>
 
 ## ③補足的分析
@@ -96,31 +96,41 @@ pdfとpngで図を、xlsxで数値を確認することができます。いず�
 
 コードを実行すると、 「03_robustness_output」フォルダ内に分析結果が格納されます。正しく出力されているか確認してください。
 
-<img width="833" height="344" alt="image" src="https://github.com/user-attachments/assets/fd6e6df0-ba31-41cc-be0e-3c363280b29e" />
+<p align="center">
+<img width="400" height="344" alt="image" src="https://github.com/user-attachments/assets/fd6e6df0-ba31-41cc-be0e-3c363280b29e" />
+</p>
 
 ### 分析結果
 
 2〇から始まるファイルは、通常の固定効果モデル（TWFE）を用いた結果です。
 
-<img width="364" height="233" alt="image" src="https://github.com/user-attachments/assets/9f7e20c6-0bf2-4b0b-ad5a-ca22734f6cd1" />
+<p align="center">
+<img width="400" height="233" alt="image" src="https://github.com/user-attachments/assets/9f7e20c6-0bf2-4b0b-ad5a-ca22734f6cd1" />
+</p>
 
 3〇から始まるファイルは、分析対象年を絞った分析の結果です。　
 
-<img width="364" height="251" alt="image" src="https://github.com/user-attachments/assets/74939889-86d5-4896-a933-77e419800073" />
-
+<p align="center">
+<img width="400" height="251" alt="image" src="https://github.com/user-attachments/assets/74939889-86d5-4896-a933-77e419800073" />
+</p>
 
 4〇から始まるファイルは、処置タイミングによる処置効果の異質性に関する分析結果です。
 
-<img width="364" height="168" alt="image" src="https://github.com/user-attachments/assets/cfe9da49-8608-4b2c-8358-2b9042a046c2" />
+<p align="center">
+<img width="400" height="168" alt="image" src="https://github.com/user-attachments/assets/cfe9da49-8608-4b2c-8358-2b9042a046c2" />
+</p>
 
 5〇から始まるファイルは、マッチング手法に関する頑健性チェックの結果です。
 
-<img width="409" height="436" alt="image" src="https://github.com/user-attachments/assets/c484e9ab-7c1b-4c47-9531-fd74210fae92" />
-
+<p align="center">
+<img width="400" height="436" alt="image" src="https://github.com/user-attachments/assets/c484e9ab-7c1b-4c47-9531-fd74210fae92" />
+</p>
 
 # 引用
 
 本分析ツールを利用する際は、以下を引用してください。
+
+×××
 
 # 免責事項
 
