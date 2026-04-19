@@ -4,7 +4,7 @@
 
 「産業政策分析ツール」の使用には、Rの実行環境が必要です。あらかじめご準備ください。
 
-「Industrial-Policy-Analysis-Tool.zip」フォルダをダウンロードして、作業環境下で解凍してください。分析用コード、データ格納フォルダ、出力フォルダ、が格納されています。本分析ツールは、３つのRコード（01_prepare.R、02_analysis.R、03_robustness）から構成されています。番号順に使用してください。
+「Industrial-Policy-Analysis-Tool」フォルダをダウンロードして、作業環境下で解凍してください。分析用コード、データ格納フォルダ、出力フォルダ、が格納されています。本分析ツールは、３つのRコード（01_prepare.R、02_analysis.R、03_robustness）から構成されています。番号順に使用してください。
 
 <p align="center">
 <img width="400" height="560" alt="image" src="https://github.com/user-attachments/assets/cf2fbc55-9bf8-4572-a2f2-19895372e831" />
