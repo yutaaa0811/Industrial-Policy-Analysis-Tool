@@ -402,30 +402,6 @@ robustness_TWFE_asset <- function(target){
     labs(title = "log_tangible_asset",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_tangible_asset_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_tangible_asset_twfe[1], att_PSM_log_tangible_asset_sa20[1]),
-  #                                     up = c(att_PSM_log_tangible_asset_twfe[1] + 1.645*att_PSM_log_tangible_asset_twfe[2],att_PSM_log_tangible_asset_sa20[1] + 1.645*att_PSM_log_tangible_asset_sa20[2]),
-  #                                     down = c(att_PSM_log_tangible_asset_twfe[1] - 1.645*att_PSM_log_tangible_asset_twfe[2],att_PSM_log_tangible_asset_sa20[1] - 1.645*att_PSM_log_tangible_asset_sa20[2]),
-  #                                     up95 = c(att_PSM_log_tangible_asset_twfe[1] + 1.960*att_PSM_log_tangible_asset_twfe[2], att_PSM_log_tangible_asset_sa20[1] + 1.960*att_PSM_log_tangible_asset_sa20[2]),
-  #                                     down95 = c(att_PSM_log_tangible_asset_twfe[1] - 1.960*att_PSM_log_tangible_asset_twfe[2],att_PSM_log_tangible_asset_sa20[1] - 1.960*att_PSM_log_tangible_asset_sa20[2])
-  # )
-  # 
-  # p_log_tangible_asset_summary <- ggplot(log_tangible_asset_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_tangible_asset_summary$down, na.rm=T),max(log_tangible_asset_summary$up, na.rm=T)), max(-min(log_tangible_asset_summary$down, na.rm=T),max(log_tangible_asset_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_tangible_asset", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_tangible_asset <- p_PSM_log_tangible_asset_fe#+p_log_tangible_asset_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -443,30 +419,6 @@ robustness_TWFE_asset <- function(target){
   p_PSM_log_intangible_asset_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_intangible_asset_sa20,'TWFE' = es_PSM_log_intangible_asset_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_intangible_asset",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_intangible_asset_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_intangible_asset_twfe[1], att_PSM_log_intangible_asset_sa20[1]),
-  #                                     up = c(att_PSM_log_intangible_asset_twfe[1] + 1.645*att_PSM_log_intangible_asset_twfe[2],att_PSM_log_intangible_asset_sa20[1] + 1.645*att_PSM_log_intangible_asset_sa20[2]),
-  #                                     down = c(att_PSM_log_intangible_asset_twfe[1] - 1.645*att_PSM_log_intangible_asset_twfe[2],att_PSM_log_intangible_asset_sa20[1] - 1.645*att_PSM_log_intangible_asset_sa20[2]),
-  #                                     up95 = c(att_PSM_log_intangible_asset_twfe[1] + 1.960*att_PSM_log_intangible_asset_twfe[2], att_PSM_log_intangible_asset_sa20[1] + 1.960*att_PSM_log_intangible_asset_sa20[2]),
-  #                                     down95 = c(att_PSM_log_intangible_asset_twfe[1] - 1.960*att_PSM_log_intangible_asset_twfe[2],att_PSM_log_intangible_asset_sa20[1] - 1.960*att_PSM_log_intangible_asset_sa20[2])
-  # )
-  # 
-  # p_log_intangible_asset_summary <- ggplot(log_intangible_asset_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_intangible_asset_summary$down, na.rm=T),max(log_intangible_asset_summary$up, na.rm=T)), max(-min(log_intangible_asset_summary$down, na.rm=T),max(log_intangible_asset_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_intangible_asset", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_intangible_asset <- p_PSM_log_intangible_asset_fe#+p_log_intangible_asset_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -505,30 +457,6 @@ robustness_TWFE_employment <- function(target){
     labs(title = "log_workers",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_workers_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_workers_twfe[1], att_PSM_log_workers_sa20[1]),
-  #                                     up = c(att_PSM_log_workers_twfe[1] + 1.645*att_PSM_log_workers_twfe[2],att_PSM_log_workers_sa20[1] + 1.645*att_PSM_log_workers_sa20[2]),
-  #                                     down = c(att_PSM_log_workers_twfe[1] - 1.645*att_PSM_log_workers_twfe[2],att_PSM_log_workers_sa20[1] - 1.645*att_PSM_log_workers_sa20[2]),
-  #                                     up95 = c(att_PSM_log_workers_twfe[1] + 1.960*att_PSM_log_workers_twfe[2], att_PSM_log_workers_sa20[1] + 1.960*att_PSM_log_workers_sa20[2]),
-  #                                     down95 = c(att_PSM_log_workers_twfe[1] - 1.960*att_PSM_log_workers_twfe[2],att_PSM_log_workers_sa20[1] - 1.960*att_PSM_log_workers_sa20[2])
-  # )
-  # 
-  # p_log_workers_summary <- ggplot(log_workers_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_workers_summary$down, na.rm=T),max(log_workers_summary$up, na.rm=T)), max(-min(log_workers_summary$down, na.rm=T),max(log_workers_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_workers", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_workers <- p_PSM_log_workers_fe#+p_log_workers_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -546,30 +474,6 @@ robustness_TWFE_employment <- function(target){
   p_PSM_log_indefinite_workers_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_indefinite_workers_sa20,'TWFE' = es_PSM_log_indefinite_workers_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_indefinite_workers",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_indefinite_workers_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_indefinite_workers_twfe[1], att_PSM_log_indefinite_workers_sa20[1]),
-  #                                     up = c(att_PSM_log_indefinite_workers_twfe[1] + 1.645*att_PSM_log_indefinite_workers_twfe[2],att_PSM_log_indefinite_workers_sa20[1] + 1.645*att_PSM_log_indefinite_workers_sa20[2]),
-  #                                     down = c(att_PSM_log_indefinite_workers_twfe[1] - 1.645*att_PSM_log_indefinite_workers_twfe[2],att_PSM_log_indefinite_workers_sa20[1] - 1.645*att_PSM_log_indefinite_workers_sa20[2]),
-  #                                     up95 = c(att_PSM_log_indefinite_workers_twfe[1] + 1.960*att_PSM_log_indefinite_workers_twfe[2], att_PSM_log_indefinite_workers_sa20[1] + 1.960*att_PSM_log_indefinite_workers_sa20[2]),
-  #                                     down95 = c(att_PSM_log_indefinite_workers_twfe[1] - 1.960*att_PSM_log_indefinite_workers_twfe[2],att_PSM_log_indefinite_workers_sa20[1] - 1.960*att_PSM_log_indefinite_workers_sa20[2])
-  # )
-  # 
-  # p_log_indefinite_workers_summary <- ggplot(log_indefinite_workers_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_indefinite_workers_summary$down, na.rm=T),max(log_indefinite_workers_summary$up, na.rm=T)), max(-min(log_indefinite_workers_summary$down, na.rm=T),max(log_indefinite_workers_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_indefinite_workers", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_indefinite_workers <- p_PSM_log_indefinite_workers_fe#+p_log_indefinite_workers_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -589,30 +493,6 @@ robustness_TWFE_employment <- function(target){
     labs(title = "log_fixedterm_workers",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_fixedterm_workers_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_fixedterm_workers_twfe[1], att_PSM_log_fixedterm_workers_sa20[1]),
-  #                                     up = c(att_PSM_log_fixedterm_workers_twfe[1] + 1.645*att_PSM_log_fixedterm_workers_twfe[2],att_PSM_log_fixedterm_workers_sa20[1] + 1.645*att_PSM_log_fixedterm_workers_sa20[2]),
-  #                                     down = c(att_PSM_log_fixedterm_workers_twfe[1] - 1.645*att_PSM_log_fixedterm_workers_twfe[2],att_PSM_log_fixedterm_workers_sa20[1] - 1.645*att_PSM_log_fixedterm_workers_sa20[2]),
-  #                                     up95 = c(att_PSM_log_fixedterm_workers_twfe[1] + 1.960*att_PSM_log_fixedterm_workers_twfe[2], att_PSM_log_fixedterm_workers_sa20[1] + 1.960*att_PSM_log_fixedterm_workers_sa20[2]),
-  #                                     down95 = c(att_PSM_log_fixedterm_workers_twfe[1] - 1.960*att_PSM_log_fixedterm_workers_twfe[2],att_PSM_log_fixedterm_workers_sa20[1] - 1.960*att_PSM_log_fixedterm_workers_sa20[2])
-  # )
-  # 
-  # p_log_fixedterm_workers_summary <- ggplot(log_fixedterm_workers_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_fixedterm_workers_summary$down, na.rm=T),max(log_fixedterm_workers_summary$up, na.rm=T)), max(-min(log_fixedterm_workers_summary$down, na.rm=T),max(log_fixedterm_workers_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_fixedterm_workers", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_fixedterm_workers <- p_PSM_log_fixedterm_workers_fe#+p_log_fixedterm_workers_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -630,30 +510,6 @@ robustness_TWFE_employment <- function(target){
   p_PSM_log_fixedterm_workers_equivalent_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_fixedterm_workers_equivalent_sa20,'TWFE' = es_PSM_log_fixedterm_workers_equivalent_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_fixedterm_workers_equivalent",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_fixedterm_workers_equivalent_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_fixedterm_workers_equivalent_twfe[1], att_PSM_log_fixedterm_workers_equivalent_sa20[1]),
-  #                                     up = c(att_PSM_log_fixedterm_workers_equivalent_twfe[1] + 1.645*att_PSM_log_fixedterm_workers_equivalent_twfe[2],att_PSM_log_fixedterm_workers_equivalent_sa20[1] + 1.645*att_PSM_log_fixedterm_workers_equivalent_sa20[2]),
-  #                                     down = c(att_PSM_log_fixedterm_workers_equivalent_twfe[1] - 1.645*att_PSM_log_fixedterm_workers_equivalent_twfe[2],att_PSM_log_fixedterm_workers_equivalent_sa20[1] - 1.645*att_PSM_log_fixedterm_workers_equivalent_sa20[2]),
-  #                                     up95 = c(att_PSM_log_fixedterm_workers_equivalent_twfe[1] + 1.960*att_PSM_log_fixedterm_workers_equivalent_twfe[2], att_PSM_log_fixedterm_workers_equivalent_sa20[1] + 1.960*att_PSM_log_fixedterm_workers_equivalent_sa20[2]),
-  #                                     down95 = c(att_PSM_log_fixedterm_workers_equivalent_twfe[1] - 1.960*att_PSM_log_fixedterm_workers_equivalent_twfe[2],att_PSM_log_fixedterm_workers_equivalent_sa20[1] - 1.960*att_PSM_log_fixedterm_workers_equivalent_sa20[2])
-  # )
-  # 
-  # p_log_fixedterm_workers_equivalent_summary <- ggplot(log_fixedterm_workers_equivalent_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_fixedterm_workers_equivalent_summary$down, na.rm=T),max(log_fixedterm_workers_equivalent_summary$up, na.rm=T)), max(-min(log_fixedterm_workers_equivalent_summary$down, na.rm=T),max(log_fixedterm_workers_equivalent_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_fixedterm_workers_equivalent", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_fixedterm_workers_equivalent <- p_PSM_log_fixedterm_workers_equivalent_fe#+p_log_fixedterm_workers_equivalent_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -673,30 +529,7 @@ robustness_TWFE_employment <- function(target){
     labs(title = "log_salary",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_salary_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_salary_twfe[1], att_PSM_log_salary_sa20[1]),
-  #                                     up = c(att_PSM_log_salary_twfe[1] + 1.645*att_PSM_log_salary_twfe[2],att_PSM_log_salary_sa20[1] + 1.645*att_PSM_log_salary_sa20[2]),
-  #                                     down = c(att_PSM_log_salary_twfe[1] - 1.645*att_PSM_log_salary_twfe[2],att_PSM_log_salary_sa20[1] - 1.645*att_PSM_log_salary_sa20[2]),
-  #                                     up95 = c(att_PSM_log_salary_twfe[1] + 1.960*att_PSM_log_salary_twfe[2], att_PSM_log_salary_sa20[1] + 1.960*att_PSM_log_salary_sa20[2]),
-  #                                     down95 = c(att_PSM_log_salary_twfe[1] - 1.960*att_PSM_log_salary_twfe[2],att_PSM_log_salary_sa20[1] - 1.960*att_PSM_log_salary_sa20[2])
-  # )
-  # 
-  # p_log_salary_summary <- ggplot(log_salary_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_salary_summary$down, na.rm=T),max(log_salary_summary$up, na.rm=T)), max(-min(log_salary_summary$down, na.rm=T),max(log_salary_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_salary", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+
   ## create grid arrange
   pa_log_salary <- p_PSM_log_salary_fe#+p_log_salary_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -714,31 +547,7 @@ robustness_TWFE_employment <- function(target){
   p_PSM_log_benefit_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_benefit_sa20,'TWFE' = es_PSM_log_benefit_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_benefit",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_benefit_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_benefit_twfe[1], att_PSM_log_benefit_sa20[1]),
-  #                                     up = c(att_PSM_log_benefit_twfe[1] + 1.645*att_PSM_log_benefit_twfe[2],att_PSM_log_benefit_sa20[1] + 1.645*att_PSM_log_benefit_sa20[2]),
-  #                                     down = c(att_PSM_log_benefit_twfe[1] - 1.645*att_PSM_log_benefit_twfe[2],att_PSM_log_benefit_sa20[1] - 1.645*att_PSM_log_benefit_sa20[2]),
-  #                                     up95 = c(att_PSM_log_benefit_twfe[1] + 1.960*att_PSM_log_benefit_twfe[2], att_PSM_log_benefit_sa20[1] + 1.960*att_PSM_log_benefit_sa20[2]),
-  #                                     down95 = c(att_PSM_log_benefit_twfe[1] - 1.960*att_PSM_log_benefit_twfe[2],att_PSM_log_benefit_sa20[1] - 1.960*att_PSM_log_benefit_sa20[2])
-  # )
-  # 
-  # p_log_benefit_summary <- ggplot(log_benefit_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_benefit_summary$down, na.rm=T),max(log_benefit_summary$up, na.rm=T)), max(-min(log_benefit_summary$down, na.rm=T),max(log_benefit_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_benefit", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+
   ## create grid arrange
   pa_log_benefit <- p_PSM_log_benefit_fe#+p_log_benefit_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -776,29 +585,6 @@ robustness_TWFE_business <- function(target){
     labs(title = "log_sales",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_sales_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_sales_twfe[1], att_PSM_log_sales_sa20[1]),
-  #                                     up = c(att_PSM_log_sales_twfe[1] + 1.645*att_PSM_log_sales_twfe[2],att_PSM_log_sales_sa20[1] + 1.645*att_PSM_log_sales_sa20[2]),
-  #                                     down = c(att_PSM_log_sales_twfe[1] - 1.645*att_PSM_log_sales_twfe[2],att_PSM_log_sales_sa20[1] - 1.645*att_PSM_log_sales_sa20[2]),
-  #                                     up95 = c(att_PSM_log_sales_twfe[1] + 1.960*att_PSM_log_sales_twfe[2], att_PSM_log_sales_sa20[1] + 1.960*att_PSM_log_sales_sa20[2]),
-  #                                     down95 = c(att_PSM_log_sales_twfe[1] - 1.960*att_PSM_log_sales_twfe[2],att_PSM_log_sales_sa20[1] - 1.960*att_PSM_log_sales_sa20[2])
-  # )
-  # 
-  # p_log_sales_summary <- ggplot(log_sales_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_sales_summary$down, na.rm=T),max(log_sales_summary$up, na.rm=T)), max(-min(log_sales_summary$down, na.rm=T),max(log_sales_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_sales", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_sales <- p_PSM_log_sales_fe#+p_log_sales_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -818,30 +604,7 @@ robustness_TWFE_business <- function(target){
     labs(title = "log_tax",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_tax_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_tax_twfe[1], att_PSM_log_tax_sa20[1]),
-  #                                     up = c(att_PSM_log_tax_twfe[1] + 1.645*att_PSM_log_tax_twfe[2],att_PSM_log_tax_sa20[1] + 1.645*att_PSM_log_tax_sa20[2]),
-  #                                     down = c(att_PSM_log_tax_twfe[1] - 1.645*att_PSM_log_tax_twfe[2],att_PSM_log_tax_sa20[1] - 1.645*att_PSM_log_tax_sa20[2]),
-  #                                     up95 = c(att_PSM_log_tax_twfe[1] + 1.960*att_PSM_log_tax_twfe[2], att_PSM_log_tax_sa20[1] + 1.960*att_PSM_log_tax_sa20[2]),
-  #                                     down95 = c(att_PSM_log_tax_twfe[1] - 1.960*att_PSM_log_tax_twfe[2],att_PSM_log_tax_sa20[1] - 1.960*att_PSM_log_tax_sa20[2])
-  # )
-  # 
-  # p_log_tax_summary <- ggplot(log_tax_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_tax_summary$down, na.rm=T),max(log_tax_summary$up, na.rm=T)), max(-min(log_tax_summary$down, na.rm=T),max(log_tax_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_tax", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+
   ## create grid arrange
   pa_log_tax <- p_PSM_log_tax_fe#+p_log_tax_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -859,30 +622,6 @@ robustness_TWFE_business <- function(target){
   p_PSM_log_office_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_office_sa20,'TWFE' = es_PSM_log_office_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_office",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_office_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_office_twfe[1], att_PSM_log_office_sa20[1]),
-  #                                     up = c(att_PSM_log_office_twfe[1] + 1.645*att_PSM_log_office_twfe[2],att_PSM_log_office_sa20[1] + 1.645*att_PSM_log_office_sa20[2]),
-  #                                     down = c(att_PSM_log_office_twfe[1] - 1.645*att_PSM_log_office_twfe[2],att_PSM_log_office_sa20[1] - 1.645*att_PSM_log_office_sa20[2]),
-  #                                     up95 = c(att_PSM_log_office_twfe[1] + 1.960*att_PSM_log_office_twfe[2], att_PSM_log_office_sa20[1] + 1.960*att_PSM_log_office_sa20[2]),
-  #                                     down95 = c(att_PSM_log_office_twfe[1] - 1.960*att_PSM_log_office_twfe[2],att_PSM_log_office_sa20[1] - 1.960*att_PSM_log_office_sa20[2])
-  # )
-  # 
-  # p_log_office_summary <- ggplot(log_office_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_office_summary$down, na.rm=T),max(log_office_summary$up, na.rm=T)), max(-min(log_office_summary$down, na.rm=T),max(log_office_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_office", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_office <- p_PSM_log_office_fe#+p_log_office_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -902,30 +641,7 @@ robustness_TWFE_business <- function(target){
     labs(title = "ROA",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # ROA_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_ROA_twfe[1], att_PSM_ROA_sa20[1]),
-  #                                     up = c(att_PSM_ROA_twfe[1] + 1.645*att_PSM_ROA_twfe[2],att_PSM_ROA_sa20[1] + 1.645*att_PSM_ROA_sa20[2]),
-  #                                     down = c(att_PSM_ROA_twfe[1] - 1.645*att_PSM_ROA_twfe[2],att_PSM_ROA_sa20[1] - 1.645*att_PSM_ROA_sa20[2]),
-  #                                     up95 = c(att_PSM_ROA_twfe[1] + 1.960*att_PSM_ROA_twfe[2], att_PSM_ROA_sa20[1] + 1.960*att_PSM_ROA_sa20[2]),
-  #                                     down95 = c(att_PSM_ROA_twfe[1] - 1.960*att_PSM_ROA_twfe[2],att_PSM_ROA_sa20[1] - 1.960*att_PSM_ROA_sa20[2])
-  # )
-  # 
-  # p_ROA_summary <- ggplot(ROA_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(ROA_summary$down, na.rm=T),max(ROA_summary$up, na.rm=T)), max(-min(ROA_summary$down, na.rm=T),max(ROA_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "ROA", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+ 
   ## create grid arrange
   pa_ROA <- p_PSM_ROA_fe#+p_ROA_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -943,29 +659,6 @@ robustness_TWFE_business <- function(target){
   p_PSM_net_profit_workers_fe <- ggiplot(list('S&A(2020)' = es_PSM_net_profit_workers_sa20,'TWFE' = es_PSM_net_profit_workers_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14),ylim = c(-5000000, 5000000)) + 
     labs(title = "net_profit_workers",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # net_profit_workers_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_net_profit_workers_twfe[1], att_PSM_net_profit_workers_sa20[1]),
-  #                                     up = c(att_PSM_net_profit_workers_twfe[1] + 1.645*att_PSM_net_profit_workers_twfe[2],att_PSM_net_profit_workers_sa20[1] + 1.645*att_PSM_net_profit_workers_sa20[2]),
-  #                                     down = c(att_PSM_net_profit_workers_twfe[1] - 1.645*att_PSM_net_profit_workers_twfe[2],att_PSM_net_profit_workers_sa20[1] - 1.645*att_PSM_net_profit_workers_sa20[2]),
-  #                                     up95 = c(att_PSM_net_profit_workers_twfe[1] + 1.960*att_PSM_net_profit_workers_twfe[2], att_PSM_net_profit_workers_sa20[1] + 1.960*att_PSM_net_profit_workers_sa20[2]),
-  #                                     down95 = c(att_PSM_net_profit_workers_twfe[1] - 1.960*att_PSM_net_profit_workers_twfe[2],att_PSM_net_profit_workers_sa20[1] - 1.960*att_PSM_net_profit_workers_sa20[2])
-  # )
-  # 
-  # p_net_profit_workers_summary <- ggplot(net_profit_workers_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(net_profit_workers_summary$down, na.rm=T),max(net_profit_workers_summary$up, na.rm=T)), max(-min(net_profit_workers_summary$down, na.rm=T),max(net_profit_workers_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "net_profit_workers", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
   
   
   ## create grid arrange
@@ -1005,30 +698,6 @@ robustness_TWFE_trade <- function(target){
     labs(title = "flag_export",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_export_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_export_twfe[1], att_PSM_flag_export_sa20[1]),
-  #                                     up = c(att_PSM_flag_export_twfe[1] + 1.645*att_PSM_flag_export_twfe[2],att_PSM_flag_export_sa20[1] + 1.645*att_PSM_flag_export_sa20[2]),
-  #                                     down = c(att_PSM_flag_export_twfe[1] - 1.645*att_PSM_flag_export_twfe[2],att_PSM_flag_export_sa20[1] - 1.645*att_PSM_flag_export_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_export_twfe[1] + 1.960*att_PSM_flag_export_twfe[2], att_PSM_flag_export_sa20[1] + 1.960*att_PSM_flag_export_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_export_twfe[1] - 1.960*att_PSM_flag_export_twfe[2],att_PSM_flag_export_sa20[1] - 1.960*att_PSM_flag_export_sa20[2])
-  # )
-  # 
-  # p_flag_export_summary <- ggplot(flag_export_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_export_summary$down, na.rm=T),max(flag_export_summary$up, na.rm=T)), max(-min(flag_export_summary$down, na.rm=T),max(flag_export_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_export", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_export <- p_PSM_flag_export_fe#+p_flag_export_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1047,30 +716,6 @@ robustness_TWFE_trade <- function(target){
     labs(title = "flag_import",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_import_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_import_twfe[1], att_PSM_flag_import_sa20[1]),
-  #                                     up = c(att_PSM_flag_import_twfe[1] + 1.645*att_PSM_flag_import_twfe[2],att_PSM_flag_import_sa20[1] + 1.645*att_PSM_flag_import_sa20[2]),
-  #                                     down = c(att_PSM_flag_import_twfe[1] - 1.645*att_PSM_flag_import_twfe[2],att_PSM_flag_import_sa20[1] - 1.645*att_PSM_flag_import_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_import_twfe[1] + 1.960*att_PSM_flag_import_twfe[2], att_PSM_flag_import_sa20[1] + 1.960*att_PSM_flag_import_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_import_twfe[1] - 1.960*att_PSM_flag_import_twfe[2],att_PSM_flag_import_sa20[1] - 1.960*att_PSM_flag_import_sa20[2])
-  # )
-  # 
-  # p_flag_import_summary <- ggplot(flag_import_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_import_summary$down, na.rm=T),max(flag_import_summary$up, na.rm=T)), max(-min(flag_import_summary$down, na.rm=T),max(flag_import_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_import", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_import <- p_PSM_flag_import_fe#+p_flag_import_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1088,31 +733,7 @@ robustness_TWFE_trade <- function(target){
   p_PSM_log_export_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_export_sa20,'TWFE' = es_PSM_log_export_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_export",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_export_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_export_twfe[1], att_PSM_log_export_sa20[1]),
-  #                                     up = c(att_PSM_log_export_twfe[1] + 1.645*att_PSM_log_export_twfe[2],att_PSM_log_export_sa20[1] + 1.645*att_PSM_log_export_sa20[2]),
-  #                                     down = c(att_PSM_log_export_twfe[1] - 1.645*att_PSM_log_export_twfe[2],att_PSM_log_export_sa20[1] - 1.645*att_PSM_log_export_sa20[2]),
-  #                                     up95 = c(att_PSM_log_export_twfe[1] + 1.960*att_PSM_log_export_twfe[2], att_PSM_log_export_sa20[1] + 1.960*att_PSM_log_export_sa20[2]),
-  #                                     down95 = c(att_PSM_log_export_twfe[1] - 1.960*att_PSM_log_export_twfe[2],att_PSM_log_export_sa20[1] - 1.960*att_PSM_log_export_sa20[2])
-  # )
-  # 
-  # p_log_export_summary <- ggplot(log_export_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_export_summary$down, na.rm=T),max(log_export_summary$up, na.rm=T)), max(-min(log_export_summary$down, na.rm=T),max(log_export_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_export", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+
   ## create grid arrange
   pa_log_export <- p_PSM_log_export_fe#+p_log_export_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1130,30 +751,6 @@ robustness_TWFE_trade <- function(target){
   p_PSM_log_import_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_import_sa20,'TWFE' = es_PSM_log_import_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_import",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_import_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_import_twfe[1], att_PSM_log_import_sa20[1]),
-  #                                     up = c(att_PSM_log_import_twfe[1] + 1.645*att_PSM_log_import_twfe[2],att_PSM_log_import_sa20[1] + 1.645*att_PSM_log_import_sa20[2]),
-  #                                     down = c(att_PSM_log_import_twfe[1] - 1.645*att_PSM_log_import_twfe[2],att_PSM_log_import_sa20[1] - 1.645*att_PSM_log_import_sa20[2]),
-  #                                     up95 = c(att_PSM_log_import_twfe[1] + 1.960*att_PSM_log_import_twfe[2], att_PSM_log_import_sa20[1] + 1.960*att_PSM_log_import_sa20[2]),
-  #                                     down95 = c(att_PSM_log_import_twfe[1] - 1.960*att_PSM_log_import_twfe[2],att_PSM_log_import_sa20[1] - 1.960*att_PSM_log_import_sa20[2])
-  # )
-  # 
-  # p_log_import_summary <- ggplot(log_import_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_import_summary$down, na.rm=T),max(log_import_summary$up, na.rm=T)), max(-min(log_import_summary$down, na.rm=T),max(log_import_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_import", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_import <- p_PSM_log_import_fe#+p_log_import_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1192,30 +789,6 @@ robustness_TWFE_trainingRD <- function(target){
     labs(title = "flag_training",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_training_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_training_twfe[1], att_PSM_flag_training_sa20[1]),
-  #                                     up = c(att_PSM_flag_training_twfe[1] + 1.645*att_PSM_flag_training_twfe[2],att_PSM_flag_training_sa20[1] + 1.645*att_PSM_flag_training_sa20[2]),
-  #                                     down = c(att_PSM_flag_training_twfe[1] - 1.645*att_PSM_flag_training_twfe[2],att_PSM_flag_training_sa20[1] - 1.645*att_PSM_flag_training_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_training_twfe[1] + 1.960*att_PSM_flag_training_twfe[2], att_PSM_flag_training_sa20[1] + 1.960*att_PSM_flag_training_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_training_twfe[1] - 1.960*att_PSM_flag_training_twfe[2],att_PSM_flag_training_sa20[1] - 1.960*att_PSM_flag_training_sa20[2])
-  # )
-  # 
-  # p_flag_training_summary <- ggplot(flag_training_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_training_summary$down, na.rm=T),max(flag_training_summary$up, na.rm=T)), max(-min(flag_training_summary$down, na.rm=T),max(flag_training_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_training", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_training <- p_PSM_flag_training_fe#+p_flag_training_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1233,30 +806,6 @@ robustness_TWFE_trainingRD <- function(target){
   p_PSM_flag_RD_fe <- ggiplot(list('S&A(2020)' = es_PSM_flag_RD_sa20,'TWFE' = es_PSM_flag_RD_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.1, 0.1)) + 
     labs(title = "flag_RD",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_RD_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_RD_twfe[1], att_PSM_flag_RD_sa20[1]),
-  #                                     up = c(att_PSM_flag_RD_twfe[1] + 1.645*att_PSM_flag_RD_twfe[2],att_PSM_flag_RD_sa20[1] + 1.645*att_PSM_flag_RD_sa20[2]),
-  #                                     down = c(att_PSM_flag_RD_twfe[1] - 1.645*att_PSM_flag_RD_twfe[2],att_PSM_flag_RD_sa20[1] - 1.645*att_PSM_flag_RD_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_RD_twfe[1] + 1.960*att_PSM_flag_RD_twfe[2], att_PSM_flag_RD_sa20[1] + 1.960*att_PSM_flag_RD_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_RD_twfe[1] - 1.960*att_PSM_flag_RD_twfe[2],att_PSM_flag_RD_sa20[1] - 1.960*att_PSM_flag_RD_sa20[2])
-  # )
-  # 
-  # p_flag_RD_summary <- ggplot(flag_RD_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_RD_summary$down, na.rm=T),max(flag_RD_summary$up, na.rm=T)), max(-min(flag_RD_summary$down, na.rm=T),max(flag_RD_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_RD", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_flag_RD <- p_PSM_flag_RD_fe#+p_flag_RD_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1276,30 +825,6 @@ robustness_TWFE_trainingRD <- function(target){
     labs(title = "log_training",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_training_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_training_twfe[1], att_PSM_log_training_sa20[1]),
-  #                                     up = c(att_PSM_log_training_twfe[1] + 1.645*att_PSM_log_training_twfe[2],att_PSM_log_training_sa20[1] + 1.645*att_PSM_log_training_sa20[2]),
-  #                                     down = c(att_PSM_log_training_twfe[1] - 1.645*att_PSM_log_training_twfe[2],att_PSM_log_training_sa20[1] - 1.645*att_PSM_log_training_sa20[2]),
-  #                                     up95 = c(att_PSM_log_training_twfe[1] + 1.960*att_PSM_log_training_twfe[2], att_PSM_log_training_sa20[1] + 1.960*att_PSM_log_training_sa20[2]),
-  #                                     down95 = c(att_PSM_log_training_twfe[1] - 1.960*att_PSM_log_training_twfe[2],att_PSM_log_training_sa20[1] - 1.960*att_PSM_log_training_sa20[2])
-  # )
-  # 
-  # p_log_training_summary <- ggplot(log_training_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_training_summary$down, na.rm=T),max(log_training_summary$up, na.rm=T)), max(-min(log_training_summary$down, na.rm=T),max(log_training_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_training", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_training <- p_PSM_log_training_fe#+p_log_training_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1317,30 +842,6 @@ robustness_TWFE_trainingRD <- function(target){
   p_PSM_log_RD_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_RD_sa20,'TWFE' = es_PSM_log_RD_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_RD",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_RD_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_RD_twfe[1], att_PSM_log_RD_sa20[1]),
-  #                                     up = c(att_PSM_log_RD_twfe[1] + 1.645*att_PSM_log_RD_twfe[2],att_PSM_log_RD_sa20[1] + 1.645*att_PSM_log_RD_sa20[2]),
-  #                                     down = c(att_PSM_log_RD_twfe[1] - 1.645*att_PSM_log_RD_twfe[2],att_PSM_log_RD_sa20[1] - 1.645*att_PSM_log_RD_sa20[2]),
-  #                                     up95 = c(att_PSM_log_RD_twfe[1] + 1.960*att_PSM_log_RD_twfe[2], att_PSM_log_RD_sa20[1] + 1.960*att_PSM_log_RD_sa20[2]),
-  #                                     down95 = c(att_PSM_log_RD_twfe[1] - 1.960*att_PSM_log_RD_twfe[2],att_PSM_log_RD_sa20[1] - 1.960*att_PSM_log_RD_sa20[2])
-  # )
-  # 
-  # p_log_RD_summary <- ggplot(log_RD_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_RD_summary$down, na.rm=T),max(log_RD_summary$up, na.rm=T)), max(-min(log_RD_summary$down, na.rm=T),max(log_RD_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_RD", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_RD <- p_PSM_log_RD_fe#+p_log_RD_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1379,30 +880,6 @@ robustness_TWFE_IP <- function(target){
     labs(title = "flag_patent",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_patent_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_patent_twfe[1], att_PSM_flag_patent_sa20[1]),
-  #                                     up = c(att_PSM_flag_patent_twfe[1] + 1.645*att_PSM_flag_patent_twfe[2],att_PSM_flag_patent_sa20[1] + 1.645*att_PSM_flag_patent_sa20[2]),
-  #                                     down = c(att_PSM_flag_patent_twfe[1] - 1.645*att_PSM_flag_patent_twfe[2],att_PSM_flag_patent_sa20[1] - 1.645*att_PSM_flag_patent_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_patent_twfe[1] + 1.960*att_PSM_flag_patent_twfe[2], att_PSM_flag_patent_sa20[1] + 1.960*att_PSM_flag_patent_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_patent_twfe[1] - 1.960*att_PSM_flag_patent_twfe[2],att_PSM_flag_patent_sa20[1] - 1.960*att_PSM_flag_patent_sa20[2])
-  # )
-  # 
-  # p_flag_patent_summary <- ggplot(flag_patent_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_patent_summary$down, na.rm=T),max(flag_patent_summary$up, na.rm=T)), max(-min(flag_patent_summary$down, na.rm=T),max(flag_patent_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_patent", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_patent <- p_PSM_flag_patent_fe#+p_flag_patent_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1420,30 +897,6 @@ robustness_TWFE_IP <- function(target){
   p_PSM_flag_jitsuyo_fe <- ggiplot(list('S&A(2020)' = es_PSM_flag_jitsuyo_sa20,'TWFE' = es_PSM_flag_jitsuyo_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.1, 0.1)) + 
     labs(title = "flag_jitsuyo",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_jitsuyo_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_jitsuyo_twfe[1], att_PSM_flag_jitsuyo_sa20[1]),
-  #                                     up = c(att_PSM_flag_jitsuyo_twfe[1] + 1.645*att_PSM_flag_jitsuyo_twfe[2],att_PSM_flag_jitsuyo_sa20[1] + 1.645*att_PSM_flag_jitsuyo_sa20[2]),
-  #                                     down = c(att_PSM_flag_jitsuyo_twfe[1] - 1.645*att_PSM_flag_jitsuyo_twfe[2],att_PSM_flag_jitsuyo_sa20[1] - 1.645*att_PSM_flag_jitsuyo_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_jitsuyo_twfe[1] + 1.960*att_PSM_flag_jitsuyo_twfe[2], att_PSM_flag_jitsuyo_sa20[1] + 1.960*att_PSM_flag_jitsuyo_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_jitsuyo_twfe[1] - 1.960*att_PSM_flag_jitsuyo_twfe[2],att_PSM_flag_jitsuyo_sa20[1] - 1.960*att_PSM_flag_jitsuyo_sa20[2])
-  # )
-  # 
-  # p_flag_jitsuyo_summary <- ggplot(flag_jitsuyo_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_jitsuyo_summary$down, na.rm=T),max(flag_jitsuyo_summary$up, na.rm=T)), max(-min(flag_jitsuyo_summary$down, na.rm=T),max(flag_jitsuyo_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_jitsuyo", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_flag_jitsuyo <- p_PSM_flag_jitsuyo_fe#+p_flag_jitsuyo_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1463,30 +916,6 @@ robustness_TWFE_IP <- function(target){
     labs(title = "flag_isho",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_isho_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_isho_twfe[1], att_PSM_flag_isho_sa20[1]),
-  #                                     up = c(att_PSM_flag_isho_twfe[1] + 1.645*att_PSM_flag_isho_twfe[2],att_PSM_flag_isho_sa20[1] + 1.645*att_PSM_flag_isho_sa20[2]),
-  #                                     down = c(att_PSM_flag_isho_twfe[1] - 1.645*att_PSM_flag_isho_twfe[2],att_PSM_flag_isho_sa20[1] - 1.645*att_PSM_flag_isho_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_isho_twfe[1] + 1.960*att_PSM_flag_isho_twfe[2], att_PSM_flag_isho_sa20[1] + 1.960*att_PSM_flag_isho_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_isho_twfe[1] - 1.960*att_PSM_flag_isho_twfe[2],att_PSM_flag_isho_sa20[1] - 1.960*att_PSM_flag_isho_sa20[2])
-  # )
-  # 
-  # p_flag_isho_summary <- ggplot(flag_isho_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_isho_summary$down, na.rm=T),max(flag_isho_summary$up, na.rm=T)), max(-min(flag_isho_summary$down, na.rm=T),max(flag_isho_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_isho", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_isho <- p_PSM_flag_isho_fe#+p_flag_isho_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1504,30 +933,6 @@ robustness_TWFE_IP <- function(target){
   p_PSM_log_patent_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_patent_sa20,'TWFE' = es_PSM_log_patent_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_patent",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_patent_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_patent_twfe[1], att_PSM_log_patent_sa20[1]),
-  #                                     up = c(att_PSM_log_patent_twfe[1] + 1.645*att_PSM_log_patent_twfe[2],att_PSM_log_patent_sa20[1] + 1.645*att_PSM_log_patent_sa20[2]),
-  #                                     down = c(att_PSM_log_patent_twfe[1] - 1.645*att_PSM_log_patent_twfe[2],att_PSM_log_patent_sa20[1] - 1.645*att_PSM_log_patent_sa20[2]),
-  #                                     up95 = c(att_PSM_log_patent_twfe[1] + 1.960*att_PSM_log_patent_twfe[2], att_PSM_log_patent_sa20[1] + 1.960*att_PSM_log_patent_sa20[2]),
-  #                                     down95 = c(att_PSM_log_patent_twfe[1] - 1.960*att_PSM_log_patent_twfe[2],att_PSM_log_patent_sa20[1] - 1.960*att_PSM_log_patent_sa20[2])
-  # )
-  # 
-  # p_log_patent_summary <- ggplot(log_patent_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_patent_summary$down, na.rm=T),max(log_patent_summary$up, na.rm=T)), max(-min(log_patent_summary$down, na.rm=T),max(log_patent_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_patent", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_patent <- p_PSM_log_patent_fe#+p_log_patent_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1547,30 +952,6 @@ robustness_TWFE_IP <- function(target){
     labs(title = "log_jitsuyo",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_jitsuyo_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_jitsuyo_twfe[1], att_PSM_log_jitsuyo_sa20[1]),
-  #                                     up = c(att_PSM_log_jitsuyo_twfe[1] + 1.645*att_PSM_log_jitsuyo_twfe[2],att_PSM_log_jitsuyo_sa20[1] + 1.645*att_PSM_log_jitsuyo_sa20[2]),
-  #                                     down = c(att_PSM_log_jitsuyo_twfe[1] - 1.645*att_PSM_log_jitsuyo_twfe[2],att_PSM_log_jitsuyo_sa20[1] - 1.645*att_PSM_log_jitsuyo_sa20[2]),
-  #                                     up95 = c(att_PSM_log_jitsuyo_twfe[1] + 1.960*att_PSM_log_jitsuyo_twfe[2], att_PSM_log_jitsuyo_sa20[1] + 1.960*att_PSM_log_jitsuyo_sa20[2]),
-  #                                     down95 = c(att_PSM_log_jitsuyo_twfe[1] - 1.960*att_PSM_log_jitsuyo_twfe[2],att_PSM_log_jitsuyo_sa20[1] - 1.960*att_PSM_log_jitsuyo_sa20[2])
-  # )
-  # 
-  # p_log_jitsuyo_summary <- ggplot(log_jitsuyo_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_jitsuyo_summary$down, na.rm=T),max(log_jitsuyo_summary$up, na.rm=T)), max(-min(log_jitsuyo_summary$down, na.rm=T),max(log_jitsuyo_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_jitsuyo", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_jitsuyo <- p_PSM_log_jitsuyo_fe#+p_log_jitsuyo_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1588,30 +969,6 @@ robustness_TWFE_IP <- function(target){
   p_PSM_log_isho_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_isho_sa20,'TWFE' = es_PSM_log_isho_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_isho",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_isho_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_isho_twfe[1], att_PSM_log_isho_sa20[1]),
-  #                                     up = c(att_PSM_log_isho_twfe[1] + 1.645*att_PSM_log_isho_twfe[2],att_PSM_log_isho_sa20[1] + 1.645*att_PSM_log_isho_sa20[2]),
-  #                                     down = c(att_PSM_log_isho_twfe[1] - 1.645*att_PSM_log_isho_twfe[2],att_PSM_log_isho_sa20[1] - 1.645*att_PSM_log_isho_sa20[2]),
-  #                                     up95 = c(att_PSM_log_isho_twfe[1] + 1.960*att_PSM_log_isho_twfe[2], att_PSM_log_isho_sa20[1] + 1.960*att_PSM_log_isho_sa20[2]),
-  #                                     down95 = c(att_PSM_log_isho_twfe[1] - 1.960*att_PSM_log_isho_twfe[2],att_PSM_log_isho_sa20[1] - 1.960*att_PSM_log_isho_sa20[2])
-  # )
-  # 
-  # p_log_isho_summary <- ggplot(log_isho_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_isho_summary$down, na.rm=T),max(log_isho_summary$up, na.rm=T)), max(-min(log_isho_summary$down, na.rm=T),max(log_isho_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_isho", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_isho <- p_PSM_log_isho_fe#+p_log_isho_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
@@ -1650,30 +1007,6 @@ robustness_TWFE_investment <- function(target){
     labs(title = "flag_investment_affiliate_domestic",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_investment_affiliate_domestic_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_investment_affiliate_domestic_twfe[1], att_PSM_flag_investment_affiliate_domestic_sa20[1]),
-  #                                     up = c(att_PSM_flag_investment_affiliate_domestic_twfe[1] + 1.645*att_PSM_flag_investment_affiliate_domestic_twfe[2],att_PSM_flag_investment_affiliate_domestic_sa20[1] + 1.645*att_PSM_flag_investment_affiliate_domestic_sa20[2]),
-  #                                     down = c(att_PSM_flag_investment_affiliate_domestic_twfe[1] - 1.645*att_PSM_flag_investment_affiliate_domestic_twfe[2],att_PSM_flag_investment_affiliate_domestic_sa20[1] - 1.645*att_PSM_flag_investment_affiliate_domestic_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_investment_affiliate_domestic_twfe[1] + 1.960*att_PSM_flag_investment_affiliate_domestic_twfe[2], att_PSM_flag_investment_affiliate_domestic_sa20[1] + 1.960*att_PSM_flag_investment_affiliate_domestic_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_investment_affiliate_domestic_twfe[1] - 1.960*att_PSM_flag_investment_affiliate_domestic_twfe[2],att_PSM_flag_investment_affiliate_domestic_sa20[1] - 1.960*att_PSM_flag_investment_affiliate_domestic_sa20[2])
-  # )
-  # 
-  # p_flag_investment_affiliate_domestic_summary <- ggplot(flag_investment_affiliate_domestic_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_investment_affiliate_domestic_summary$down, na.rm=T),max(flag_investment_affiliate_domestic_summary$up, na.rm=T)), max(-min(flag_investment_affiliate_domestic_summary$down, na.rm=T),max(flag_investment_affiliate_domestic_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_investment_affiliate_domestic", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_investment_affiliate_domestic <- p_PSM_flag_investment_affiliate_domestic_fe#+p_flag_investment_affiliate_domestic_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1692,30 +1025,6 @@ robustness_TWFE_investment <- function(target){
     labs(title = "flag_investment_affiliate_overseas",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_investment_affiliate_overseas_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_investment_affiliate_overseas_twfe[1], att_PSM_flag_investment_affiliate_overseas_sa20[1]),
-  #                                     up = c(att_PSM_flag_investment_affiliate_overseas_twfe[1] + 1.645*att_PSM_flag_investment_affiliate_overseas_twfe[2],att_PSM_flag_investment_affiliate_overseas_sa20[1] + 1.645*att_PSM_flag_investment_affiliate_overseas_sa20[2]),
-  #                                     down = c(att_PSM_flag_investment_affiliate_overseas_twfe[1] - 1.645*att_PSM_flag_investment_affiliate_overseas_twfe[2],att_PSM_flag_investment_affiliate_overseas_sa20[1] - 1.645*att_PSM_flag_investment_affiliate_overseas_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_investment_affiliate_overseas_twfe[1] + 1.960*att_PSM_flag_investment_affiliate_overseas_twfe[2], att_PSM_flag_investment_affiliate_overseas_sa20[1] + 1.960*att_PSM_flag_investment_affiliate_overseas_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_investment_affiliate_overseas_twfe[1] - 1.960*att_PSM_flag_investment_affiliate_overseas_twfe[2],att_PSM_flag_investment_affiliate_overseas_sa20[1] - 1.960*att_PSM_flag_investment_affiliate_overseas_sa20[2])
-  # )
-  # 
-  # p_flag_investment_affiliate_overseas_summary <- ggplot(flag_investment_affiliate_overseas_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_investment_affiliate_overseas_summary$down, na.rm=T),max(flag_investment_affiliate_overseas_summary$up, na.rm=T)), max(-min(flag_investment_affiliate_overseas_summary$down, na.rm=T),max(flag_investment_affiliate_overseas_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_investment_affiliate_overseas", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_flag_investment_affiliate_overseas <- p_PSM_flag_investment_affiliate_overseas_fe#+p_flag_investment_affiliate_overseas_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1733,31 +1042,7 @@ robustness_TWFE_investment <- function(target){
   p_PSM_flag_dividend_fe <- ggiplot(list('S&A(2020)' = es_PSM_flag_dividend_sa20,'TWFE' = es_PSM_flag_dividend_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.1, 0.1)) + 
     labs(title = "flag_dividend",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # flag_dividend_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_flag_dividend_twfe[1], att_PSM_flag_dividend_sa20[1]),
-  #                                     up = c(att_PSM_flag_dividend_twfe[1] + 1.645*att_PSM_flag_dividend_twfe[2],att_PSM_flag_dividend_sa20[1] + 1.645*att_PSM_flag_dividend_sa20[2]),
-  #                                     down = c(att_PSM_flag_dividend_twfe[1] - 1.645*att_PSM_flag_dividend_twfe[2],att_PSM_flag_dividend_sa20[1] - 1.645*att_PSM_flag_dividend_sa20[2]),
-  #                                     up95 = c(att_PSM_flag_dividend_twfe[1] + 1.960*att_PSM_flag_dividend_twfe[2], att_PSM_flag_dividend_sa20[1] + 1.960*att_PSM_flag_dividend_sa20[2]),
-  #                                     down95 = c(att_PSM_flag_dividend_twfe[1] - 1.960*att_PSM_flag_dividend_twfe[2],att_PSM_flag_dividend_sa20[1] - 1.960*att_PSM_flag_dividend_sa20[2])
-  # )
-  # 
-  # p_flag_dividend_summary <- ggplot(flag_dividend_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(flag_dividend_summary$down, na.rm=T),max(flag_dividend_summary$up, na.rm=T)), max(-min(flag_dividend_summary$down, na.rm=T),max(flag_dividend_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "flag_dividend", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+
   ## create grid arrange
   pa_flag_dividend <- p_PSM_flag_dividend_fe#+p_flag_dividend_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1775,31 +1060,7 @@ robustness_TWFE_investment <- function(target){
   p_PSM_log_investment_affiliate_domestic_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_investment_affiliate_domestic_sa20,'TWFE' = es_PSM_log_investment_affiliate_domestic_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_investment_affiliate_domestic",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_investment_affiliate_domestic_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_investment_affiliate_domestic_twfe[1], att_PSM_log_investment_affiliate_domestic_sa20[1]),
-  #                                     up = c(att_PSM_log_investment_affiliate_domestic_twfe[1] + 1.645*att_PSM_log_investment_affiliate_domestic_twfe[2],att_PSM_log_investment_affiliate_domestic_sa20[1] + 1.645*att_PSM_log_investment_affiliate_domestic_sa20[2]),
-  #                                     down = c(att_PSM_log_investment_affiliate_domestic_twfe[1] - 1.645*att_PSM_log_investment_affiliate_domestic_twfe[2],att_PSM_log_investment_affiliate_domestic_sa20[1] - 1.645*att_PSM_log_investment_affiliate_domestic_sa20[2]),
-  #                                     up95 = c(att_PSM_log_investment_affiliate_domestic_twfe[1] + 1.960*att_PSM_log_investment_affiliate_domestic_twfe[2], att_PSM_log_investment_affiliate_domestic_sa20[1] + 1.960*att_PSM_log_investment_affiliate_domestic_sa20[2]),
-  #                                     down95 = c(att_PSM_log_investment_affiliate_domestic_twfe[1] - 1.960*att_PSM_log_investment_affiliate_domestic_twfe[2],att_PSM_log_investment_affiliate_domestic_sa20[1] - 1.960*att_PSM_log_investment_affiliate_domestic_sa20[2])
-  # )
-  # 
-  # p_log_investment_affiliate_domestic_summary <- ggplot(log_investment_affiliate_domestic_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_investment_affiliate_domestic_summary$down, na.rm=T),max(log_investment_affiliate_domestic_summary$up, na.rm=T)), max(-min(log_investment_affiliate_domestic_summary$down, na.rm=T),max(log_investment_affiliate_domestic_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_investment_affiliate_domestic", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
+ 
   ## create grid arrange
   pa_log_investment_affiliate_domestic <- p_PSM_log_investment_affiliate_domestic_fe#+p_log_investment_affiliate_domestic_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1818,30 +1079,6 @@ robustness_TWFE_investment <- function(target){
     labs(title = "log_investment_affiliate_overseas",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
   
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_investment_affiliate_overseas_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_investment_affiliate_overseas_twfe[1], att_PSM_log_investment_affiliate_overseas_sa20[1]),
-  #                                     up = c(att_PSM_log_investment_affiliate_overseas_twfe[1] + 1.645*att_PSM_log_investment_affiliate_overseas_twfe[2],att_PSM_log_investment_affiliate_overseas_sa20[1] + 1.645*att_PSM_log_investment_affiliate_overseas_sa20[2]),
-  #                                     down = c(att_PSM_log_investment_affiliate_overseas_twfe[1] - 1.645*att_PSM_log_investment_affiliate_overseas_twfe[2],att_PSM_log_investment_affiliate_overseas_sa20[1] - 1.645*att_PSM_log_investment_affiliate_overseas_sa20[2]),
-  #                                     up95 = c(att_PSM_log_investment_affiliate_overseas_twfe[1] + 1.960*att_PSM_log_investment_affiliate_overseas_twfe[2], att_PSM_log_investment_affiliate_overseas_sa20[1] + 1.960*att_PSM_log_investment_affiliate_overseas_sa20[2]),
-  #                                     down95 = c(att_PSM_log_investment_affiliate_overseas_twfe[1] - 1.960*att_PSM_log_investment_affiliate_overseas_twfe[2],att_PSM_log_investment_affiliate_overseas_sa20[1] - 1.960*att_PSM_log_investment_affiliate_overseas_sa20[2])
-  # )
-  # 
-  # p_log_investment_affiliate_overseas_summary <- ggplot(log_investment_affiliate_overseas_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_investment_affiliate_overseas_summary$down, na.rm=T),max(log_investment_affiliate_overseas_summary$up, na.rm=T)), max(-min(log_investment_affiliate_overseas_summary$down, na.rm=T),max(log_investment_affiliate_overseas_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_investment_affiliate_overseas", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
-  
   ## create grid arrange
   pa_log_investment_affiliate_overseas <- p_PSM_log_investment_affiliate_overseas_fe#+p_log_investment_affiliate_overseas_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
   
@@ -1859,30 +1096,6 @@ robustness_TWFE_investment <- function(target){
   p_PSM_log_dividend_fe <- ggiplot(list('S&A(2020)' = es_PSM_log_dividend_sa20,'TWFE' = es_PSM_log_dividend_twfe),ref.line = 0, pt.join = TRUE, geom_style = 'ribbon', ci_level = c(.95))+coord_cartesian(xlim = c(-10,14), ylim = c(-0.5, 0.5)) + 
     labs(title = "log_dividend",subtitle = "TWFE + S&A(2020) - PSM, 95% CI") +
     theme_light()
-  
-  ## create summary graph
-  # method <- c("TWFE","S&A(2020)")
-  # log_dividend_summary <- data.frame(method = method,
-  #                                     estimate = c(att_PSM_log_dividend_twfe[1], att_PSM_log_dividend_sa20[1]),
-  #                                     up = c(att_PSM_log_dividend_twfe[1] + 1.645*att_PSM_log_dividend_twfe[2],att_PSM_log_dividend_sa20[1] + 1.645*att_PSM_log_dividend_sa20[2]),
-  #                                     down = c(att_PSM_log_dividend_twfe[1] - 1.645*att_PSM_log_dividend_twfe[2],att_PSM_log_dividend_sa20[1] - 1.645*att_PSM_log_dividend_sa20[2]),
-  #                                     up95 = c(att_PSM_log_dividend_twfe[1] + 1.960*att_PSM_log_dividend_twfe[2], att_PSM_log_dividend_sa20[1] + 1.960*att_PSM_log_dividend_sa20[2]),
-  #                                     down95 = c(att_PSM_log_dividend_twfe[1] - 1.960*att_PSM_log_dividend_twfe[2],att_PSM_log_dividend_sa20[1] - 1.960*att_PSM_log_dividend_sa20[2])
-  # )
-  # 
-  # p_log_dividend_summary <- ggplot(log_dividend_summary, aes(x = factor(method, level = method), y=estimate, color=factor(method))) +
-  #   geom_errorbar(aes(ymin = down, ymax = up), width=.1, position=position_dodge(0.1)) +
-  #   geom_errorbar(aes(ymin = down95, ymax = up95), width=0, position=position_dodge(0.1)) +
-  #   geom_point(position=position_dodge(0.1), size=3, shape=15, fill="white") +
-  #   coord_cartesian(ylim = c(-max(-min(log_dividend_summary$down, na.rm=T),max(log_dividend_summary$up, na.rm=T)), max(-min(log_dividend_summary$down, na.rm=T),max(log_dividend_summary$up, na.rm=T))))+
-  #   xlab("Method") +
-  #   labs(title = "log_dividend", subtitle ="Aggregated ATT, 90 & 95% CI")+
-  #   theme_light() +
-  #   scale_color_manual(values = c("TWFE" = "#F8766D",
-  #                                 "S&A(2020)"="#00BA38")) +
-  #   geom_text(aes(x=method, y=estimate, label=sprintf("%2.3f", estimate),vjust=2),color='gray') + 
-  #   geom_hline(yintercept=0)  + theme(legend.position="none")
-  
   
   ## create grid arrange
   pa_log_dividend <- p_PSM_log_dividend_fe#+p_log_dividend_summary# + plot_layout(ncol = 4, widths = c(1,1,1,1))
