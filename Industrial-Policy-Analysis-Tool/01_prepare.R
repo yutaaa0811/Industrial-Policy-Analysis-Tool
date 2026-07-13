@@ -13,7 +13,7 @@ library(openxlsx)
 
 # 設定-------------
 setwd("D:/R/260407Industrial-Policy-Analysis-Tool") # 使用環境に合わせて修正する
-is_key <- 1 #統計間マッチングキーを使用する場合は1、使用しない場合は0を設定
+is_key <- 0 #統計間マッチングキーを使用する場合は1、使用しない場合は0を設定
 
 ###readcsv-----------
 df2023_0 <- read.csv("kikatsu_rawdata/2023_kohyo1.csv", header = TRUE, fileEncoding="Shift-JIS") %>% mutate(year = 2022)
